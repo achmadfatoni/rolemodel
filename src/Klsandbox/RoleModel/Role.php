@@ -38,7 +38,12 @@ class Role extends Model {
     }
 
     public static function __callStatic($method, $parameters) {
-        if (in_array($method, ['Stockist', 'Admin'])) {
+        static $cachedRoles = null;
+        if (is_null($cachedRoles)) {
+            $cachedRoles = array_values(\Config::get('role.roles'));
+        }
+
+        if (in_array($method, $cachedRoles)) {
             return Role::firstByAttributes(['name' => $method, 'site_id' => Site::id()]);
         }
 
