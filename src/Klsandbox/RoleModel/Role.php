@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Klsandbox\RoleModel;
 
 use Klsandbox\SiteModel\Site;
 use Illuminate\Database\Eloquent\Model;
