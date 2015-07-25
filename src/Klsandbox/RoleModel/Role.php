@@ -15,12 +15,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property string $name
  * @property string $friendly_name
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Role whereSiteId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Role whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Role whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Role whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Role whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Role whereFriendlyName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereSiteId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereFriendlyName($value)
  */
 class Role extends Model {
 
