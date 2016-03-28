@@ -16,9 +16,9 @@ class RoleTableSeeder extends Seeder
             Site::setSite($site);
             foreach ($roles as $roleName => $roleFriendlyName) {
 
-                $role = Role::forSite()->where('name', '=', $roleName);
+                $role = Role::forSite()->where('name', '=', $roleName)->first();
                 if (!$role) {
-                    Role::create(['name' => $roleName,
+                    $role = Role::create(['name' => $roleName,
                         'friendly_name' => $roleFriendlyName]);
                     $role->save();
                 }
