@@ -34,7 +34,7 @@ class Role extends Model {
     }
 
     public static function findByName($roleName) {
-        return Role::firstByAttributes(['name' => $roleName, 'site_id' => Site::id()]);
+        return Role::where(['name' => $roleName, 'site_id' => Site::id()])->first();
     }
 
     public static function __callStatic($method, $parameters) {
@@ -44,7 +44,7 @@ class Role extends Model {
         }
 
         if (in_array($method, $cachedRoles)) {
-            return Role::firstByAttributes(['name' => $method, 'site_id' => Site::id()]);
+            return Role::where(['name' => $method, 'site_id' => Site::id()])->first();
         }
 
         return parent::__callStatic($method, $parameters);
