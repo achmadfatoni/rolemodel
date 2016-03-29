@@ -3,6 +3,7 @@
 namespace Klsandbox\RoleModel;
 
 use Illuminate\Support\ServiceProvider;
+use Klsandbox\SiteConfig\Services\SiteConfig;
 
 class RoleModelServiceProvider extends ServiceProvider {
 
@@ -39,6 +40,10 @@ class RoleModelServiceProvider extends ServiceProvider {
         $this->publishes([
             __DIR__ . '/../../../config/' => config_path()
                 ], 'config');
+
+        SiteConfig::macro('has_staff', function () {
+            return !!config('role.roles.staff');
+        });
     }
 
 }
