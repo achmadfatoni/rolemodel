@@ -32,6 +32,8 @@ class RoleModelServiceProvider extends ServiceProvider {
     }
 
     public function boot() {
+        $this->app['router']->middleware('role', \Klsandbox\RoleModel\Http\Middleware\RoleMiddleware::class);
+
         $this->publishes([
             __DIR__ . '/../../../database/migrations/' => database_path('/migrations')
                 ], 'migrations');
