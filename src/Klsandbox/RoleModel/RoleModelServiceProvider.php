@@ -46,6 +46,10 @@ class RoleModelServiceProvider extends ServiceProvider {
         SiteConfig::macro('has_staff', function () {
             return !!config('role.roles.staff');
         });
+
+        SiteConfig::macro('has_sales', function () {
+            return !!config('role.roles.sales');
+        });
     }
 
 }
