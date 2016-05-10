@@ -34,7 +34,7 @@ class Role extends Model {
     }
 
     public static function findByName($roleName) {
-        return Role::forSite()->where(['name' => $roleName])->first();
+        return Role::forSite()->where(['name' => strtolower($roleName)])->first();
     }
 
     public static function __callStatic($method, $parameters) {
@@ -44,7 +44,7 @@ class Role extends Model {
         }
 
         if (in_array($method, $cachedRoles)) {
-            return Role::forSite()->where(['name' => $method])->first();
+            return Role::findByName($method);
         }
 
         return parent::__callStatic($method, $parameters);
