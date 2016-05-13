@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereFriendlyName($value)
+ * @mixin \Eloquent
  */
 class Role extends Model {
 
