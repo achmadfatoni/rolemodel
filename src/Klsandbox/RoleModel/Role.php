@@ -35,7 +35,9 @@ class Role extends Model {
     }
 
     public static function findByName($roleName) {
-        return self::forSite()->where(['name' => strtolower($roleName)])->first();
+        $item = self::forSite()->where(['name' => strtolower($roleName)])->first();
+        assert($item, $roleName);
+        return $item;
     }
 
     public static function __callStatic($method, $parameters) {
