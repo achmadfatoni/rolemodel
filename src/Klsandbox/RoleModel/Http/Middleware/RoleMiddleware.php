@@ -1,4 +1,6 @@
-<?php namespace Klsandbox\RoleModel\Http\Middleware;
+<?php
+
+namespace Klsandbox\RoleModel\Http\Middleware;
 
 use App;
 use Closure;
@@ -6,7 +8,6 @@ use Illuminate\Contracts\Auth\Guard;
 
 class RoleMiddleware
 {
-
     /**
      * The Guard implementation.
      *
@@ -18,6 +19,7 @@ class RoleMiddleware
      * Create a new filter instance.
      *
      * @param  Guard $auth
+     *
      * @return void
      */
     public function __construct(Guard $auth)
@@ -30,6 +32,7 @@ class RoleMiddleware
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next, $roleNames)
@@ -42,8 +45,7 @@ class RoleMiddleware
             }
         }
 
-        foreach (explode('+', $roleNames) as $role)
-        {
+        foreach (explode('+', $roleNames) as $role) {
             if ($this->auth->user()->role->name == $role) {
                 return $next($request);
             }

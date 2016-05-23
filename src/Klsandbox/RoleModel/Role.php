@@ -2,7 +2,6 @@
 
 namespace Klsandbox\RoleModel;
 
-use Klsandbox\SiteModel\Site;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property string $name
  * @property string $friendly_name
+ *
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereSiteId($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereCreatedAt($value)
@@ -23,24 +23,28 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereFriendlyName($value)
  * @mixin \Eloquent
  */
-class Role extends Model {
-
+class Role extends Model
+{
     use \Klsandbox\SiteModel\SiteExtensions;
 
     protected $table = 'roles';
     public $timestamps = true;
 
-    public function users() {
+    public function users()
+    {
         return $this->hasMany('App\Models\User');
     }
 
-    public static function findByName($roleName) {
+    public static function findByName($roleName)
+    {
         $item = self::forSite()->where(['name' => strtolower($roleName)])->first();
         assert($item, $roleName);
+
         return $item;
     }
 
-    public static function __callStatic($method, $parameters) {
+    public static function __callStatic($method, $parameters)
+    {
         static $cachedRoles = null;
         if (is_null($cachedRoles)) {
             $cachedRoles = array_values(\Config::get('role.roles'));
@@ -52,5 +56,4 @@ class Role extends Model {
 
         return parent::__callStatic($method, $parameters);
     }
-
 }

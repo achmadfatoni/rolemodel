@@ -5,8 +5,8 @@ namespace Klsandbox\RoleModel;
 use Illuminate\Support\ServiceProvider;
 use Klsandbox\SiteConfig\Services\SiteConfig;
 
-class RoleModelServiceProvider extends ServiceProvider {
-
+class RoleModelServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -19,7 +19,8 @@ class RoleModelServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         //
     }
 
@@ -28,28 +29,29 @@ class RoleModelServiceProvider extends ServiceProvider {
      *
      * @return array
      */
-    public function provides() {
+    public function provides()
+    {
         return [];
     }
 
-    public function boot() {
+    public function boot()
+    {
         $this->app['router']->middleware('role', \Klsandbox\RoleModel\Http\Middleware\RoleMiddleware::class);
 
         $this->publishes([
-            __DIR__ . '/../../../database/migrations/' => database_path('/migrations')
+            __DIR__ . '/../../../database/migrations/' => database_path('/migrations'),
                 ], 'migrations');
 
         $this->publishes([
-            __DIR__ . '/../../../config/' => config_path()
+            __DIR__ . '/../../../config/' => config_path(),
                 ], 'config');
 
         SiteConfig::macro('has_staff', function () {
-            return !!config('role.roles.staff');
+            return (bool) config('role.roles.staff');
         });
 
         SiteConfig::macro('has_sales', function () {
-            return !!config('role.roles.sales');
+            return (bool) config('role.roles.sales');
         });
     }
-
 }
