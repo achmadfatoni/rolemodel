@@ -3,9 +3,13 @@
 namespace Klsandbox\RoleModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Klsandbox\SiteModel\Site;
 
 /**
  * App\Models\Role
+ *
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Admin()
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Staff()
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property integer $site_id
@@ -30,6 +34,8 @@ class Role extends Model
     protected $table = 'roles';
     public $timestamps = true;
 
+    private static $cache;
+
     public function users()
     {
         return $this->hasMany('App\Models\User');
@@ -37,8 +43,27 @@ class Role extends Model
 
     public static function findByName($roleName)
     {
-        $item = self::forSite()->where(['name' => strtolower($roleName)])->first();
+        $roleName = strtolower($roleName);
+
+        if (!self::$cache)
+        {
+            self::$cache = [];
+        }
+
+        if (!key_exists(Site::id(), self::$cache))
+        {
+            self::$cache[Site::id()] = [];
+        }
+
+        if (key_exists($roleName, self::$cache[Site::id()]))
+        {
+            return self::$cache[Site::id()][$roleName];
+        }
+
+        $item = self::forSite()->where(['name' => $roleName])->first();
         assert($item, $roleName);
+
+        self::$cache[Site::id()][$roleName] = $item;
 
         return $item;
     }
