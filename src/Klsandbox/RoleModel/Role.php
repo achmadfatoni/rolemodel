@@ -45,18 +45,15 @@ class Role extends Model
     {
         $roleName = strtolower($roleName);
 
-        if (!self::$cache)
-        {
+        if (!self::$cache) {
             self::$cache = [];
         }
 
-        if (!key_exists(Site::id(), self::$cache))
-        {
+        if (!key_exists(Site::id(), self::$cache)) {
             self::$cache[Site::id()] = [];
         }
 
-        if (key_exists($roleName, self::$cache[Site::id()]))
-        {
+        if (key_exists($roleName, self::$cache[Site::id()])) {
             return self::$cache[Site::id()][$roleName];
         }
 

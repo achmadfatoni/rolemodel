@@ -46,7 +46,8 @@ class RoleMiddleware
         }
 
         foreach (explode('+', $roleNames) as $role) {
-            if ($this->auth->user()->role->name == $role) {
+            if ($this->auth->user()->access()->{$role})
+            {
                 return $next($request);
             }
         }
