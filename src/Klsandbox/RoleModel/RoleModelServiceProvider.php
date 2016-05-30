@@ -50,6 +50,14 @@ class RoleModelServiceProvider extends ServiceProvider
             return (bool) config('role.roles.staff');
         });
 
+        SiteConfig::macro('has_dropship', function () {
+            return (bool) config('role.roles.dropship');
+        });
+
+        SiteConfig::macro('dropship_can_register', function () {
+            return (bool) config('role.can_register.dropship');
+        });
+
         SiteConfig::macro('has_sales', function () {
             return (bool) config('role.roles.sales');
         });
