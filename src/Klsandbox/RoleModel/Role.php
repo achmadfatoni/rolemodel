@@ -12,7 +12,6 @@ use Klsandbox\SiteModel\Site;
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Staff()
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Stockist()
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Dropship()
- *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property integer $site_id
  * @property integer $id
@@ -20,7 +19,6 @@ use Klsandbox\SiteModel\Site;
  * @property \Carbon\Carbon $updated_at
  * @property string $name
  * @property string $friendly_name
- *
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereSiteId($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereCreatedAt($value)
