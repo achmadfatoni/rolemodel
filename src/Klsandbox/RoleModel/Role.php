@@ -10,6 +10,8 @@ use Klsandbox\SiteModel\Site;
  *
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Admin()
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Staff()
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Stockist()
+ * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Dropship()
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property integer $site_id
