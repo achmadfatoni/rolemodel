@@ -45,9 +45,18 @@ class RoleMiddleware
             }
         }
 
+        $hasNew = str_contains($roleNames, 'new');
+
         foreach (explode('+', $roleNames) as $role) {
             if ($this->auth->user()->access()->{$role}) {
                 return $next($request);
+            }
+
+            if ($hasNew)
+            {
+                if ($this->auth->user()->access()->role == $role) {
+                    return $next($request);
+                }
             }
         }
 
