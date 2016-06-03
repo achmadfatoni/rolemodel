@@ -52,8 +52,7 @@ class RoleMiddleware
                 return $next($request);
             }
 
-            if ($hasNew)
-            {
+            if ($hasNew) {
                 if ($this->auth->user()->access()->role == $role) {
                     return $next($request);
                 }
