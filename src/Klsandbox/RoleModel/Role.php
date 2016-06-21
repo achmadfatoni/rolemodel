@@ -35,6 +35,8 @@ class Role extends Model
     protected $table = 'roles';
     public $timestamps = true;
 
+    protected $fillable = ['name', 'friendly_name'];
+
     private static $cache;
 
     public function users()
