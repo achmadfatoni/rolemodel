@@ -81,4 +81,9 @@ class Role extends Model
 
         return parent::__callStatic($method, $parameters);
     }
+
+    public function getRouteKey()
+    {
+        return $this->name;
+    }
 }
