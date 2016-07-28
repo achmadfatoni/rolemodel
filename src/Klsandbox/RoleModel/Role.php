@@ -30,8 +30,6 @@ use Klsandbox\SiteModel\Site;
  */
 class Role extends Model
 {
-    use \Klsandbox\SiteModel\SiteExtensions;
-
     protected $table = 'roles';
     public $timestamps = true;
 
@@ -60,7 +58,7 @@ class Role extends Model
             return self::$cache[Site::id()][$roleName];
         }
 
-        $item = self::forSite()->where(['name' => $roleName])->first();
+        $item = self::where(['name' => $roleName])->first();
         assert($item, $roleName);
 
         self::$cache[Site::id()][$roleName] = $item;
