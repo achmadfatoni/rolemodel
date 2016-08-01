@@ -3,7 +3,6 @@
 namespace Klsandbox\RoleModel;
 
 use Illuminate\Database\Eloquent\Model;
-use Klsandbox\SiteModel\Site;
 
 /**
  * App\Models\Role
@@ -14,13 +13,11 @@ use Klsandbox\SiteModel\Site;
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Dropship()
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role Sales()
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
- * @property integer $site_id
  * @property integer $id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $name
  * @property string $friendly_name
- * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereSiteId($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Klsandbox\RoleModel\Role whereUpdatedAt($value)
@@ -50,18 +47,14 @@ class Role extends Model
             self::$cache = [];
         }
 
-        if (!key_exists(Site::id(), self::$cache)) {
-            self::$cache[Site::id()] = [];
-        }
-
-        if (key_exists($roleName, self::$cache[Site::id()])) {
-            return self::$cache[Site::id()][$roleName];
+        if (key_exists($roleName, self::$cache)) {
+            return self::$cache[$roleName];
         }
 
         $item = self::where(['name' => $roleName])->first();
         assert($item, $roleName);
 
-        self::$cache[Site::id()][$roleName] = $item;
+        self::$cache[$roleName] = $item;
 
         return $item;
     }
