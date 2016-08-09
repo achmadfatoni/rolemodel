@@ -48,8 +48,7 @@ class RoleMiddleware
         $hasNew = str_contains($roleNames, 'new');
 
         foreach (explode('+', $roleNames) as $role) {
-            if ($role == 'new')
-            {
+            if ($role == 'new') {
                 continue;
             }
 
